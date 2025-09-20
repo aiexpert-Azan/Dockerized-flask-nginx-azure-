@@ -4,7 +4,7 @@ This project demonstrates how to deploy a **Flask web application** using **Dock
 
 ---
 
-## 🚀 Project Overview
+##  Project Overview
 - **Flask**: Simple Python web app (`Hello, World`).
 - **Docker**: Containerized the application for consistency.
 - **Nginx**: Reverse proxy to handle incoming requests.
