@@ -1,9 +1,13 @@
 version: '3'
 services:
   flask:
-    build: .
+    build:
+      context: .           # root where Dockerfile is
+      dockerfile: Dockerfile
     container_name: flask_app
     restart: always
+    expose:
+      - "5000"
 
   nginx:
     image: nginx:alpine
@@ -14,4 +18,5 @@ services:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - flask
+
 

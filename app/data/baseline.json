@@ -1,0 +1,23 @@
+{
+  "features": {
+    "css-grid": {
+      "status": "widely-supported",
+      "browsers": {
+        "chrome": "57",
+        "firefox": "52",
+        "safari": "10.1",
+        "edge": "16"
+      }
+    },
+    "fetch": {
+      "status": "widely-supported",
+      "browsers": {
+        "chrome": "42",
+        "firefox": "39",
+        "safari": "10.1",
+        "edge": "14"
+      }
+    }
+  }
+}
+

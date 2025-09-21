@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Feature Support Checker</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; }
+    input, button { padding: 8px; }
+    .result { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h2>🔍 Browser Feature Support Checker</h2>
+  <p>Enter a web feature name (e.g., <b>css-grid</b> or <b>fetch</b>):</p>
+
+  <input id="featureInput" placeholder="Enter feature name">
+  <button onclick="checkFeature()">Check</button>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    async function checkFeature() {
+      const feature = document.getElementById("featureInput").value.trim();
+      if (!feature) {
+        alert("Please enter a feature name");
+        return;
+      }
+
+      try {
+        const response = await fetch(`/api/feature/${feature}`);
+        const data = await response.json();
+
+        if (data.error) {
+          document.getElementById("result").innerHTML =
+            `<p style="color:red;">❌ ${data.error}</p>`;
+        } else {
+          let html = `<h3>Feature: ${feature}</h3>`;
+          html += `<p>Status: ${data.status}</p>`;
+          html += "<ul>";
+          for (const [browser, version] of Object.entries(data.browsers)) {
+            html += `<li><b>${browser}</b>: ${version}</li>`;
+          }
+          html += "</ul>";
+          document.getElementById("result").innerHTML = html;
+        }
+      } catch (err) {
+        document.getElementById("result").innerHTML =
+          `<p style="color:red;">Error fetching data</p>`;
+      }
+    }
+  </script>
+</body>
+</html>
+
